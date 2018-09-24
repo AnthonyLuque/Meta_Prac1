@@ -28,7 +28,7 @@ size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
 
 int main() {
 	string line;
-	ifstream myfile("ejemplo.txt");
+	ifstream myfile("datos/cnf01.txt");
 	if (myfile.is_open())
 	{
 
@@ -55,16 +55,28 @@ int main() {
 				do {
 					std::vector<std::string> v;
 					split(line, v, ' ');
+
+					int* values = new int[matrixSize];
+					int matrixIterator = 0;
+					for (i = 0; i < v.size(); i++) {
+						if (!(v[i] == "")) {
+							values[matrixIterator] = std::stoi(v[i]);
+							matrixIterator++;
+						}
+					}
+
 					for (int j = 0; j < matrixSize; j++) {
-						flowMatrix[i][j] = std::stoi(v[j]);
+						//flowMatrix[i][j] = values[j];
+						cout << j << ":" << values[j] << "|";
 					}
 					// New line
 					getline(myfile, line);
 					lineNumber++;
 					i++;
+					cout << endl;
 				} while (i < matrixSize);
 			}
-
+			/*
 			// Distance matrix
 			if (4 + matrixSize <= lineNumber && lineNumber < 4 + matrixSize + matrixSize) {
 				int i = 0;
@@ -80,10 +92,13 @@ int main() {
 					i++;
 				} while (i < matrixSize);
 			}
+			*/
 			lineNumber++;
+			
 		}
 		myfile.close();
 
+		/*
 		// Displaying the matrixes
 		for (int i = 0; i < matrixSize; i++) {
 			for (int j = 0; j < matrixSize; j++) {
@@ -99,6 +114,7 @@ int main() {
 			}
 			cout << endl;
 		}
+		*/
 
 	}
 	else {
