@@ -6,6 +6,8 @@
 
 using namespace std;
 
+
+
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
 {
 	size_t pos = txt.find(ch);
@@ -27,6 +29,12 @@ size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
 }
 
 int main() {
+
+
+
+	/* SETTING AND FILLING THE MATRICES IN */
+
+
 	string line;
 	ifstream myfile("datos/cnf01.dat");
 	if (myfile.is_open())
@@ -38,11 +46,11 @@ int main() {
 
 		// Declaring the matrixes
 		int** flowMatrix = new int*[matrixSize]; //col
-		for (int i = 0; i < matrixSize; ++i)
+		for (int i = 0; i < matrixSize; i++)
 			flowMatrix[i] = new int[matrixSize]; //row
 
 		int** distanceMatrix = new int*[matrixSize]; //col
-		for (int i = 0; i < matrixSize; ++i)
+		for (int i = 0; i < matrixSize; i++)
 			distanceMatrix[i] = new int[matrixSize]; //row
 
 		// Filling the matrixes in
@@ -76,7 +84,7 @@ int main() {
 					cout << endl;
 				} while (i < matrixSize);
 			}
-			
+
 			// Distance matrix
 			if (4 + matrixSize <= lineNumber && lineNumber < 4 + matrixSize + matrixSize) {
 				int i = 0;
@@ -103,14 +111,14 @@ int main() {
 					i++;
 				} while (i < matrixSize);
 			}
-			
+
 			lineNumber++;
-			
+
 		}
 		myfile.close();
 
 
-		// Displaying the matrixes
+		// Displaying the matrices
 		for (int i = 0; i < matrixSize; i++) {
 			for (int j = 0; j < matrixSize; j++) {
 				cout << " " << flowMatrix[i][j];
@@ -125,12 +133,104 @@ int main() {
 			}
 			cout << endl;
 		}
-		
+
+
+
+
+
+		/* GREEDY ALGORITHM */
+
+		// Variables declaration
+		int* flowSums = new int[matrixSize];
+		int* distanceSums = new int[matrixSize];
+
+		bool* flowMask = new bool[matrixSize];
+		bool* distanceMask = new bool[matrixSize];
+
+		int* unitAndLocationAssociation = new int[matrixSize];
+
+		// Initialization
+		for (int i = 0; i < matrixSize; i++) {
+			unitAndLocationAssociation[i] = 0;
+			flowSums[i] = 0;
+			distanceSums[i] = 0;
+			flowMask[i] = 0;
+			distanceMask[i] = 0;
+		}
+
+		// Sums calcul
+		for (int i = 0; i < matrixSize; i++) {
+			for (int j = 0; j < matrixSize; j++) {
+
+				flowSums[i] += flowMatrix[i][j];
+				distanceSums[i] += distanceMatrix[i][j];
+
+			}
+		}
+
+		int biggestFreeUnitSum;
+		int smallestFreeLocationSum;
+		int biggestFreeUnitPosition;
+		int smallestFreeLocationPosition;
+
+		// Unit and Location association
+		int iterations = 0;
+		do {	
+
+			// Initialization
+			biggestFreeUnitSum = -1;
+			smallestFreeLocationSum = -1;
+			biggestFreeUnitPosition = -1;
+			smallestFreeLocationPosition = -1;
+
+			// Biggest unit and smallest location sum search
+			for (int i = 0; i < matrixSize; i++) {
+
+				if (flowMask[i] == 0) {
+					if (biggestFreeUnitSum == -1) {
+						biggestFreeUnitSum = flowSums[i];
+						biggestFreeUnitPosition = i;
+					}
+					else if (flowSums[i] > biggestFreeUnitSum) {
+						biggestFreeUnitSum = flowSums[i];
+						biggestFreeUnitPosition = i;
+					}
+				}
+
+				if (distanceMask[i] == 0) {
+					if (smallestFreeLocationSum == -1) {
+						smallestFreeLocationSum = distanceSums[i];
+						smallestFreeLocationPosition = i;
+					}
+					else if (distanceSums[i] < smallestFreeLocationSum) {
+						smallestFreeLocationSum = distanceSums[i];
+						smallestFreeLocationPosition = i;
+					}
+				}
+
+			}
+
+			unitAndLocationAssociation[biggestFreeUnitPosition] = smallestFreeLocationPosition + 1; // Real position
+			flowMask[biggestFreeUnitPosition] = 1;
+			distanceMask[smallestFreeLocationPosition] = 1;
+
+			iterations++;
+		} while (iterations < matrixSize);
+
+		// Displaying the associations
+		cout << endl;
+		for (int i = 0; i < matrixSize; i++) {
+			cout << " " << unitAndLocationAssociation[i];
+		}
+
+
+
 
 	}
 	else {
 		cout << "Unable to open file";
 	}
+
 
 	system("pause");
 	return 0;
