@@ -28,6 +28,8 @@ size_t split(const std::string &txt, std::vector<std::string> &strs, char ch)
 	return strs.size();
 }
 
+
+
 int main() {
 
 
@@ -147,11 +149,11 @@ int main() {
 		bool* flowMask = new bool[matrixSize];
 		bool* distanceMask = new bool[matrixSize];
 
-		int* unitAndLocationAssociation = new int[matrixSize];
+		int* greedyUnitAndLocationAssociation = new int[matrixSize];
 
 		// Initialization
 		for (int i = 0; i < matrixSize; i++) {
-			unitAndLocationAssociation[i] = 0;
+			greedyUnitAndLocationAssociation[i] = 0;
 			flowSums[i] = 0;
 			distanceSums[i] = 0;
 			flowMask[i] = 0;
@@ -210,7 +212,7 @@ int main() {
 
 			}
 
-			unitAndLocationAssociation[biggestFreeUnitPosition] = smallestFreeLocationPosition + 1; // Real position
+			greedyUnitAndLocationAssociation[biggestFreeUnitPosition] = smallestFreeLocationPosition; // Real position
 			flowMask[biggestFreeUnitPosition] = 1;
 			distanceMask[smallestFreeLocationPosition] = 1;
 
@@ -219,11 +221,27 @@ int main() {
 
 		// Displaying the associations
 		cout << endl;
+		cout << "Greedy Unit And Location Association: " << endl;
 		for (int i = 0; i < matrixSize; i++) {
-			cout << " " << unitAndLocationAssociation[i];
+			cout << " " << greedyUnitAndLocationAssociation[i] + 1;
 		}
+		cout << endl;
+
+		float greedyCost = 0;
+		for (int i = 0; i < matrixSize; i++) {
+			for (int j = 0; j < matrixSize; j++) {
+				if (j != i) {
+					greedyCost += flowMatrix[i][j] * distanceMatrix[greedyUnitAndLocationAssociation[i]][greedyUnitAndLocationAssociation[j]];
+				}
+			}
+		}
+		cout << "Greedy Cost : " << greedyCost << endl;
 
 
+
+		/* BEST FIRST ALGORITHM */
+
+		int* bestFirstUnitAndLocationAssociation = new int[matrixSize];
 
 
 	}
