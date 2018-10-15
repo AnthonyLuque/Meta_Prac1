@@ -15,5 +15,4 @@ int main(int argc,  char** argv) {
 	//i->greedy(cost);
 	sol=i->bestFirst(cost);
 	//system("pause");
-	return 0;
 }
