@@ -6,7 +6,6 @@
  */
 
 #include "Instance.h"
-#include "random.h"
 
 Instance::Instance(string path) {
 	string line;
@@ -201,19 +200,22 @@ int* Instance::greedy(int * cost){
 		//Calculation of the cost of the generated solution
 		for(int i=0;i<matrixSize;i++){
 			for(int j=0;j<matrixSize;j++){
-				*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]][unitAndLocationAssociation[j]];
+				if(i!=j)
+					*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
 			}
 		}
 
 		// Displaying the associations
 			cout << endl;
 			for (int i = 0; i < matrixSize; i++) {
-				cout << " " << unitAndLocationAssociation[i];
+				cout << unitAndLocationAssociation[i] << " ";
 			}
+			cout << "coste: " << *cost << endl;
 			return unitAndLocationAssociation;
 }
 int * Instance::bestFirst(int * cost){
 	int costDiff,swap;
+	*cost=0;
 	int * DLB= new int[matrixSize];
 	bool improve_flag;
 	for(int i=0;i<matrixSize;i++){
@@ -231,7 +233,8 @@ int * Instance::bestFirst(int * cost){
 	//Calculation of the cost of the generated solution
 	for(int i=0;i<matrixSize;i++){
 		for(int j=0;j<matrixSize;j++){
-			*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
+			if(i!=j)
+				*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
 		}
 	}
 	//Main loop
@@ -243,7 +246,8 @@ int * Instance::bestFirst(int * cost){
 				for (int j=0;j<matrixSize; j++){
 					if(j!=i && DLB[j]==0){
 						costDiff = checkMove(unitAndLocationAssociation,i,j);
-						if(costDiff<=0){
+						it++;
+						if(costDiff<0){
 							//Making the change effective
 							swap = unitAndLocationAssociation[i];
 							unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
@@ -260,8 +264,6 @@ int * Instance::bestFirst(int * cost){
 					DLB[i]=1;
 			}
 		}
-
-		it++;
 	}
 
 	//Display solution and cost
@@ -294,6 +296,168 @@ int Instance::checkMove(int * sol, int i, int j){
 	return cost;
 }
 
+int * Instance::simAnnealingBoltzmann(int * cost){
+	int costDiff,swap;
+	*cost=0;
+	int * DLB= new int[matrixSize];
+	int * bestSolution= new int[matrixSize];
+	int bestCost;
+	bool improve_flag;
+	for(int i=0;i<matrixSize;i++){
+		DLB[i]=0;
+	}
+
+	int* unitAndLocationAssociation = new int[matrixSize];
+
+	/*First random solution*/
+	for(int i=0; i<matrixSize; i++){
+
+		unitAndLocationAssociation[i]= i+1;
+	}
+	random_shuffle(&unitAndLocationAssociation[0],&unitAndLocationAssociation[matrixSize]);
+	//Calculation of the cost of the generated solution
+	for(int i=0;i<matrixSize;i++){
+		for(int j=0;j<matrixSize;j++){
+			if(i!=j)
+				*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
+		}
+	}
+	double initialT= (double)*cost * 1.5;
+	double T=initialT;
+	//Main loop
+	int it = 0;
+	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
+		for(int i=0; i<matrixSize;i++){
+			if(DLB[i]==0){
+				improve_flag=false;
+				for (int j=0;j<matrixSize; j++){
+					if(j!=i && DLB[j]==0){
+						costDiff = checkMove(unitAndLocationAssociation,i,j);
+						it++;
+						if(costDiff<0){
+							//Making the change effective
+							swap = unitAndLocationAssociation[i];
+							unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
+							unitAndLocationAssociation[j] = swap;
+							*cost+=costDiff;
+
+							bestSolution = unitAndLocationAssociation;
+							bestCost=*cost;
+							DLB[i]=0;
+							DLB[j]=0;
+							improve_flag=true;
+						}else{
+							/*Simulated annealing*/
+							double pAcceptance = exp(((double)costDiff)/T);
+							if(T>pAcceptance){
+								//Making the change effective
+								swap = unitAndLocationAssociation[i];
+								unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
+								unitAndLocationAssociation[j] = swap;
+								*cost+=costDiff;
+								DLB[i]=0;
+								DLB[j]=0;
+								T= T / (1+log(it));
+							}
+						}
+					}
+				}
+				if (!improve_flag)
+					DLB[i]=1;
+			}
+		}
+	}
+
+	//Display solution and cost
+	for(int i=0; i< matrixSize; i++){
+		cout << bestSolution[i] << " ";
+	}
+	cout << "coste: "<< bestCost << endl;
+
+	return bestSolution;
+}
+
+int * Instance::simAnnealingGeometric(int * cost){
+	int costDiff,swap;
+	*cost=0;
+	int * DLB= new int[matrixSize];
+	int * bestSolution= new int[matrixSize];
+	int bestCost;
+	bool improve_flag;
+	for(int i=0;i<matrixSize;i++){
+		DLB[i]=0;
+	}
+
+	int* unitAndLocationAssociation = new int[matrixSize];
+
+	/*First random solution*/
+	for(int i=0; i<matrixSize; i++){
+
+		unitAndLocationAssociation[i]= i+1;
+	}
+	random_shuffle(&unitAndLocationAssociation[0],&unitAndLocationAssociation[matrixSize]);
+	//Calculation of the cost of the generated solution
+	for(int i=0;i<matrixSize;i++){
+		for(int j=0;j<matrixSize;j++){
+			if(i!=j)
+				*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
+		}
+	}
+	double initialT= (double)*cost * 1.5;
+	double T = initialT;
+	//Main loop
+	int it = 0;
+	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
+		for(int i=0; i<matrixSize;i++){
+			if(DLB[i]==0){
+				improve_flag=false;
+				for (int j=0;j<matrixSize; j++){
+					if(j!=i && DLB[j]==0){
+						costDiff = checkMove(unitAndLocationAssociation,i,j);
+						it++;
+						if(costDiff<0){
+							//Making the change effective
+							swap = unitAndLocationAssociation[i];
+							unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
+							unitAndLocationAssociation[j] = swap;
+							*cost+=costDiff;
+
+							bestSolution = unitAndLocationAssociation;
+							bestCost=*cost;
+							DLB[i]=0;
+							DLB[j]=0;
+							improve_flag=true;
+						}else{
+							/*Simulated annealing*/
+							double pAcceptance = exp(((double)costDiff)/T);
+							if(T>pAcceptance){
+								//Making the change effective
+								swap = unitAndLocationAssociation[i];
+								unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
+								unitAndLocationAssociation[j] = swap;
+								*cost+=costDiff;
+								DLB[i]=0;
+								DLB[j]=0;
+								T= ALPHA * T ;
+							}
+						}
+					}
+				}
+				if (!improve_flag)
+					DLB[i]=1;
+			}
+		}
+	}
+
+	//Display solution and cost
+	for(int i=0; i< matrixSize; i++){
+		cout << bestSolution[i] << " ";
+	}
+	cout << "coste: "<< bestCost << endl;
+
+	return bestSolution;
+}
+
 size_t Instance::split(const std::string &txt, std::vector<std::string> &strs, char ch)
 {
 	size_t pos = txt.find(ch);
@@ -313,4 +477,3 @@ size_t Instance::split(const std::string &txt, std::vector<std::string> &strs, c
 
 	return strs.size();
 }
-

@@ -14,6 +14,7 @@
 #include <vector>
 #include <algorithm>
 #include <bits/stdc++.h>
+#define ALPHA 0.9
 
 using namespace std;
 
@@ -31,6 +32,8 @@ public:
 	void display();
 	int * greedy(int * cost);
 	int * bestFirst(int * cost);
+	int * simAnnealingBoltzmann(int * cost);
+	int * simAnnealingGeometric(int * cost);
 	virtual ~Instance();
 };
 

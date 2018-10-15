@@ -1,6 +1,5 @@
 
 #include "Instance.h"
-#include "random.h"
 
 int main(int argc,  char** argv) {
 	if(argc<3){
@@ -8,11 +7,13 @@ int main(int argc,  char** argv) {
 		return 1;
 	}
 	std::srand(atoi(argv[2]));
-	int *sol;
 	int * cost= new int[1];
 	Instance* i=new Instance(argv[1]);
 	//i->display();
-	//i->greedy(cost);
-	sol=i->bestFirst(cost);
+	i->greedy(cost);
+	i->bestFirst(cost);
+	i->simAnnealingBoltzmann(cost);
+	i->simAnnealingGeometric(cost);
 	//system("pause");
+	return 0;
 }
