@@ -334,6 +334,7 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 					if(j!=i && DLB[j]==0){
 						costDiff = checkMove(unitAndLocationAssociation,i,j);
 						it++;
+
 						if(costDiff<0){
 							//Making the change effective
 							swap = unitAndLocationAssociation[i];
@@ -357,15 +358,19 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 								*cost+=costDiff;
 								DLB[i]=0;
 								DLB[j]=0;
-								T= T / (1+log(it));
+
 							}
 						}
+
 					}
+					T= T / (1+log(it));
 				}
 				if (!improve_flag)
 					DLB[i]=1;
 			}
+
 		}
+
 	}
 
 	//Display solution and cost
@@ -438,15 +443,19 @@ int * Instance::simAnnealingGeometric(int * cost){
 								*cost+=costDiff;
 								DLB[i]=0;
 								DLB[j]=0;
-								T= ALPHA * T ;
+
 							}
 						}
+
 					}
+					T= ALPHA * T ;
 				}
 				if (!improve_flag)
 					DLB[i]=1;
 			}
+
 		}
+
 	}
 
 	//Display solution and cost
