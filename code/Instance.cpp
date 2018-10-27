@@ -301,7 +301,7 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 	*cost=0;
 	int * DLB= new int[matrixSize];
 	int * bestSolution= new int[matrixSize];
-	int bestCost;
+	int bestCost = 0;
 	bool improve_flag;
 	for(int i=0;i<matrixSize;i++){
 		DLB[i]=0;
@@ -387,7 +387,7 @@ int * Instance::simAnnealingGeometric(int * cost){
 	*cost=0;
 	int * DLB= new int[matrixSize];
 	int * bestSolution= new int[matrixSize];
-	int bestCost;
+	int bestCost = 0;
 	bool improve_flag;
 	for(int i=0;i<matrixSize;i++){
 		DLB[i]=0;
