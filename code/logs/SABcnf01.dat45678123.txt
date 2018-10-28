@@ -1,0 +1,20 @@
+Initial solution cost: 13260, Initial temperature: 19890
+Movement in iteration: 5, new cost: 11884
+Movement in iteration: 8, new cost: 11472
+Movement in iteration: 24, new cost: 10552
+Movement in iteration: 25, new cost: 10396
+Movement in iteration: 32, new cost: 10346
+Movement in iteration: 45, new cost: 10310
+Movement in iteration: 50, new cost: 10286
+Movement in iteration: 57, new cost: 9262
+Movement in iteration: 58, new cost: 8824
+Movement in iteration: 71, new cost: 8712
+Movement in iteration: 99, new cost: 8538
+Movement in iteration: 103, new cost: 8498
+Movement in iteration: 143, new cost: 8318
+Movement in iteration: 154, new cost: 8172
+Movement in iteration: 161, new cost: 8022
+Movement in iteration: 164, new cost: 7844
+Movement in iteration: 231, new cost: 7800
+Movement in iteration: 234, new cost: 7610
+Loop ended because of the temperature

@@ -1,0 +1,92 @@
+Initial solution cost: 7918, Initial temperature: 11877
+Movement in iteration: 1, new cost: 7880
+Worse movement in iteration: 2, new cost: 7880
+Movement in iteration: 3, new cost: 7848
+Worse movement in iteration: 4, new cost: 7868
+Worse movement in iteration: 5, new cost: 7932
+Movement in iteration: 6, new cost: 7844
+Worse movement in iteration: 7, new cost: 7880
+Worse movement in iteration: 8, new cost: 7900
+Movement in iteration: 9, new cost: 7850
+Movement in iteration: 10, new cost: 7770
+Worse movement in iteration: 11, new cost: 7844
+Movement in iteration: 12, new cost: 7792
+Worse movement in iteration: 13, new cost: 7850
+Movement in iteration: 14, new cost: 7766
+Movement in iteration: 15, new cost: 7738
+Movement in iteration: 16, new cost: 7730
+Worse movement in iteration: 17, new cost: 7734
+Worse movement in iteration: 18, new cost: 7738
+Movement in iteration: 19, new cost: 7734
+Worse movement in iteration: 20, new cost: 7758
+Movement in iteration: 21, new cost: 7748
+Movement in iteration: 22, new cost: 7734
+Worse movement in iteration: 23, new cost: 7742
+Movement in iteration: 24, new cost: 7714
+Worse movement in iteration: 25, new cost: 7728
+Movement in iteration: 26, new cost: 7700
+Worse movement in iteration: 27, new cost: 7704
+Worse movement in iteration: 28, new cost: 7876
+Movement in iteration: 29, new cost: 7838
+Movement in iteration: 30, new cost: 7630
+Worse movement in iteration: 31, new cost: 7696
+Worse movement in iteration: 32, new cost: 7788
+Movement in iteration: 33, new cost: 7692
+Movement in iteration: 34, new cost: 7608
+Movement in iteration: 35, new cost: 7586
+Worse movement in iteration: 36, new cost: 7622
+Worse movement in iteration: 37, new cost: 7650
+Worse movement in iteration: 38, new cost: 7670
+Movement in iteration: 39, new cost: 7610
+Worse movement in iteration: 40, new cost: 7638
+Worse movement in iteration: 41, new cost: 7642
+Movement in iteration: 42, new cost: 7616
+Worse movement in iteration: 43, new cost: 7620
+Worse movement in iteration: 44, new cost: 7624
+Worse movement in iteration: 45, new cost: 7642
+Movement in iteration: 46, new cost: 7638
+Movement in iteration: 47, new cost: 7626
+Worse movement in iteration: 48, new cost: 7698
+Movement in iteration: 49, new cost: 7688
+Movement in iteration: 50, new cost: 7648
+Worse movement in iteration: 52, new cost: 7726
+Worse movement in iteration: 53, new cost: 7762
+Worse movement in iteration: 54, new cost: 7778
+Movement in iteration: 55, new cost: 7732
+Movement in iteration: 56, new cost: 7700
+Worse movement in iteration: 57, new cost: 7732
+Worse movement in iteration: 58, new cost: 7772
+Movement in iteration: 59, new cost: 7768
+Worse movement in iteration: 60, new cost: 7772
+Movement in iteration: 61, new cost: 7746
+Movement in iteration: 62, new cost: 7722
+Worse movement in iteration: 63, new cost: 7730
+Movement in iteration: 64, new cost: 7714
+Movement in iteration: 65, new cost: 7680
+Movement in iteration: 66, new cost: 7592
+Movement in iteration: 68, new cost: 7576
+Movement in iteration: 71, new cost: 7564
+Movement in iteration: 77, new cost: 7488
+Movement in iteration: 81, new cost: 7458
+Movement in iteration: 82, new cost: 7432
+Movement in iteration: 84, new cost: 7376
+Movement in iteration: 94, new cost: 7364
+Movement in iteration: 102, new cost: 7328
+Movement in iteration: 116, new cost: 7306
+Movement in iteration: 128, new cost: 7292
+Movement in iteration: 142, new cost: 7288
+Movement in iteration: 143, new cost: 7280
+Movement in iteration: 145, new cost: 7278
+Movement in iteration: 168, new cost: 7248
+Movement in iteration: 181, new cost: 7238
+Movement in iteration: 182, new cost: 7230
+Movement in iteration: 183, new cost: 7190
+Movement in iteration: 201, new cost: 7188
+Movement in iteration: 205, new cost: 7184
+Movement in iteration: 220, new cost: 7176
+Movement in iteration: 249, new cost: 7140
+Movement in iteration: 279, new cost: 7138
+Movement in iteration: 338, new cost: 7120
+Movement in iteration: 340, new cost: 7118
+Movement in iteration: 346, new cost: 7062
+Loop ended because of the temperature

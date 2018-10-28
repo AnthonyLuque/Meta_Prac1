@@ -1,0 +1,21 @@
+Initial solution cost: 16194
+Movement in iteration: 1, new cost: 12084
+Movement in iteration: 2, new cost: 11714
+Movement in iteration: 3, new cost: 11078
+Movement in iteration: 9, new cost: 10122
+Movement in iteration: 16, new cost: 9884
+Movement in iteration: 44, new cost: 9682
+Movement in iteration: 49, new cost: 9666
+Movement in iteration: 79, new cost: 9358
+Movement in iteration: 81, new cost: 9354
+Movement in iteration: 92, new cost: 9082
+Movement in iteration: 95, new cost: 8826
+Movement in iteration: 144, new cost: 8554
+Movement in iteration: 153, new cost: 8538
+Movement in iteration: 193, new cost: 8526
+Movement in iteration: 194, new cost: 8506
+Movement in iteration: 199, new cost: 8250
+Movement in iteration: 219, new cost: 8118
+Movement in iteration: 336, new cost: 8100
+Movement in iteration: 345, new cost: 8060
+Loop ended because of DLB

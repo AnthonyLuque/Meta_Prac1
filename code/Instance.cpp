@@ -213,7 +213,7 @@ int* Instance::greedy(int * cost){
 			cout << "coste: " << *cost << endl;
 			return unitAndLocationAssociation;
 }
-int * Instance::bestFirst(int * cost){
+int * Instance::bestFirst(int * cost , ofstream &outfile){
 	int costDiff,swap;
 	*cost=0;
 	int * DLB= new int[matrixSize];
@@ -237,6 +237,7 @@ int * Instance::bestFirst(int * cost){
 				*cost+=flowMatrix[i][j] * distanceMatrix[unitAndLocationAssociation[i]-1][unitAndLocationAssociation[j]-1];
 		}
 	}
+	outfile << "Initial solution cost: " << *cost << endl;
 	//Main loop
 	int it = 0;
 	while(it<50000 && checkDLB(DLB)){
@@ -257,6 +258,8 @@ int * Instance::bestFirst(int * cost){
 							DLB[i]=0;
 							DLB[j]=0;
 							improve_flag=true;
+
+							outfile << "Movement in iteration: " << it << ", new cost: " << *cost << endl;
 						}
 					}
 				}
@@ -265,6 +268,10 @@ int * Instance::bestFirst(int * cost){
 			}
 		}
 	}
+	if(it>50000)
+		outfile << "Loop ended because of iteration number" <<endl;
+	else
+		outfile << "Loop ended because of DLB"<< endl;
 
 	//Display solution and cost
 	for(int i=0; i< matrixSize; i++){
@@ -296,7 +303,7 @@ int Instance::checkMove(int * sol, int i, int j){
 	return cost;
 }
 
-int * Instance::simAnnealingBoltzmann(int * cost){
+int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 	int costDiff,swap;
 	*cost=0;
 	int * DLB= new int[matrixSize];
@@ -324,6 +331,8 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 	}
 	double initialT= (double)*cost * 1.5;
 	double T=initialT;
+
+	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
 	int it = 0;
 	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
@@ -347,6 +356,7 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 							DLB[i]=0;
 							DLB[j]=0;
 							improve_flag=true;
+							outfile << "Movement in iteration: " << it << ", new cost: " << *cost << endl;
 						}else{
 							/*Simulated annealing*/
 							double pAcceptance = exp(((double)costDiff)/T);
@@ -358,7 +368,7 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 								*cost+=costDiff;
 								DLB[i]=0;
 								DLB[j]=0;
-
+								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
 							}
 						}
 
@@ -372,7 +382,12 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 		}
 
 	}
-
+	if(it>50000)
+		outfile << "Loop ended because of iteration number" <<endl;
+	else if(!checkDLB(DLB))
+		outfile << "Loop ended because of DLB"<< endl;
+	else
+		outfile << "Loop ended because of the temperature"<< endl;
 	//Display solution and cost
 	for(int i=0; i< matrixSize; i++){
 		cout << bestSolution[i] << " ";
@@ -382,7 +397,7 @@ int * Instance::simAnnealingBoltzmann(int * cost){
 	return bestSolution;
 }
 
-int * Instance::simAnnealingGeometric(int * cost){
+int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 	int costDiff,swap;
 	*cost=0;
 	int * DLB= new int[matrixSize];
@@ -410,6 +425,7 @@ int * Instance::simAnnealingGeometric(int * cost){
 	}
 	double initialT= (double)*cost * 1.5;
 	double T = initialT;
+	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
 	int it = 0;
 	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
@@ -432,6 +448,8 @@ int * Instance::simAnnealingGeometric(int * cost){
 							DLB[i]=0;
 							DLB[j]=0;
 							improve_flag=true;
+							outfile << "Movement in iteration: " << it << ", new cost: " << *cost << endl;
+
 						}else{
 							/*Simulated annealing*/
 							double pAcceptance = exp(((double)costDiff)/T);
@@ -443,6 +461,7 @@ int * Instance::simAnnealingGeometric(int * cost){
 								*cost+=costDiff;
 								DLB[i]=0;
 								DLB[j]=0;
+								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
 
 							}
 						}
@@ -457,6 +476,12 @@ int * Instance::simAnnealingGeometric(int * cost){
 		}
 
 	}
+	if(it>50000)
+		outfile << "Loop ended because of iteration number" <<endl;
+	else if(!checkDLB(DLB))
+		outfile << "Loop ended because of DLB"<< endl;
+	else
+		outfile << "Loop ended because of the temperature"<< endl;
 
 	//Display solution and cost
 	for(int i=0; i< matrixSize; i++){

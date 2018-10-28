@@ -1,0 +1,194 @@
+Initial solution cost: 55596, Initial temperature: 83394
+Movement in iteration: 1, new cost: 55578
+Movement in iteration: 2, new cost: 55566
+Worse movement in iteration: 3, new cost: 55694
+Movement in iteration: 4, new cost: 55614
+Worse movement in iteration: 5, new cost: 55772
+Movement in iteration: 6, new cost: 55372
+Worse movement in iteration: 7, new cost: 55926
+Movement in iteration: 8, new cost: 55278
+Worse movement in iteration: 9, new cost: 55864
+Movement in iteration: 10, new cost: 55798
+Worse movement in iteration: 11, new cost: 55858
+Movement in iteration: 12, new cost: 55832
+Movement in iteration: 13, new cost: 55452
+Worse movement in iteration: 14, new cost: 55890
+Movement in iteration: 15, new cost: 55886
+Movement in iteration: 16, new cost: 55568
+Worse movement in iteration: 17, new cost: 56088
+Movement in iteration: 18, new cost: 56060
+Movement in iteration: 19, new cost: 55812
+Movement in iteration: 20, new cost: 55748
+Worse movement in iteration: 21, new cost: 55862
+Worse movement in iteration: 22, new cost: 55990
+Movement in iteration: 23, new cost: 55952
+Worse movement in iteration: 24, new cost: 56012
+Movement in iteration: 25, new cost: 55888
+Worse movement in iteration: 26, new cost: 56104
+Movement in iteration: 27, new cost: 55848
+Movement in iteration: 28, new cost: 55608
+Worse movement in iteration: 29, new cost: 55900
+Movement in iteration: 30, new cost: 55660
+Worse movement in iteration: 31, new cost: 55788
+Movement in iteration: 32, new cost: 55680
+Movement in iteration: 33, new cost: 55360
+Worse movement in iteration: 34, new cost: 55484
+Worse movement in iteration: 35, new cost: 55788
+Movement in iteration: 36, new cost: 55492
+Worse movement in iteration: 37, new cost: 55764
+Worse movement in iteration: 38, new cost: 56002
+Movement in iteration: 39, new cost: 55694
+Movement in iteration: 40, new cost: 55602
+Movement in iteration: 41, new cost: 55512
+Movement in iteration: 42, new cost: 55392
+Worse movement in iteration: 43, new cost: 55616
+Movement in iteration: 44, new cost: 55428
+Worse movement in iteration: 45, new cost: 55642
+Movement in iteration: 46, new cost: 55542
+Worse movement in iteration: 47, new cost: 55700
+Movement in iteration: 48, new cost: 55180
+Worse movement in iteration: 49, new cost: 55934
+Movement in iteration: 50, new cost: 55910
+Movement in iteration: 51, new cost: 55836
+Worse movement in iteration: 52, new cost: 55848
+Worse movement in iteration: 53, new cost: 55944
+Worse movement in iteration: 54, new cost: 55984
+Worse movement in iteration: 55, new cost: 56050
+Movement in iteration: 56, new cost: 55666
+Worse movement in iteration: 57, new cost: 55924
+Movement in iteration: 58, new cost: 55476
+Worse movement in iteration: 59, new cost: 55552
+Movement in iteration: 60, new cost: 55510
+Worse movement in iteration: 61, new cost: 55562
+Movement in iteration: 62, new cost: 55532
+Movement in iteration: 63, new cost: 55208
+Worse movement in iteration: 64, new cost: 55526
+Worse movement in iteration: 65, new cost: 55562
+Worse movement in iteration: 66, new cost: 55596
+Worse movement in iteration: 67, new cost: 55824
+Movement in iteration: 68, new cost: 55624
+Movement in iteration: 69, new cost: 55472
+Movement in iteration: 70, new cost: 55436
+Worse movement in iteration: 71, new cost: 55586
+Worse movement in iteration: 72, new cost: 55634
+Worse movement in iteration: 73, new cost: 55636
+Movement in iteration: 74, new cost: 55536
+Worse movement in iteration: 75, new cost: 55572
+Movement in iteration: 77, new cost: 55502
+Movement in iteration: 78, new cost: 55330
+Movement in iteration: 80, new cost: 55314
+Movement in iteration: 83, new cost: 55274
+Movement in iteration: 86, new cost: 55040
+Movement in iteration: 89, new cost: 54946
+Movement in iteration: 90, new cost: 54814
+Movement in iteration: 91, new cost: 54732
+Movement in iteration: 92, new cost: 54700
+Movement in iteration: 101, new cost: 54610
+Movement in iteration: 102, new cost: 54606
+Movement in iteration: 106, new cost: 54518
+Movement in iteration: 108, new cost: 54448
+Movement in iteration: 113, new cost: 54360
+Movement in iteration: 119, new cost: 54324
+Movement in iteration: 123, new cost: 54198
+Movement in iteration: 129, new cost: 54186
+Movement in iteration: 151, new cost: 54112
+Movement in iteration: 152, new cost: 54084
+Movement in iteration: 162, new cost: 54006
+Movement in iteration: 167, new cost: 53956
+Movement in iteration: 169, new cost: 53950
+Movement in iteration: 175, new cost: 53890
+Movement in iteration: 177, new cost: 53818
+Movement in iteration: 178, new cost: 53494
+Movement in iteration: 182, new cost: 53428
+Movement in iteration: 189, new cost: 53422
+Movement in iteration: 201, new cost: 53372
+Movement in iteration: 231, new cost: 53348
+Movement in iteration: 252, new cost: 53336
+Movement in iteration: 262, new cost: 53332
+Movement in iteration: 301, new cost: 53298
+Movement in iteration: 310, new cost: 53282
+Movement in iteration: 311, new cost: 53278
+Movement in iteration: 329, new cost: 53254
+Movement in iteration: 350, new cost: 53246
+Movement in iteration: 366, new cost: 53226
+Movement in iteration: 371, new cost: 53224
+Movement in iteration: 391, new cost: 53078
+Movement in iteration: 409, new cost: 53034
+Movement in iteration: 410, new cost: 52980
+Movement in iteration: 411, new cost: 52956
+Movement in iteration: 420, new cost: 52936
+Movement in iteration: 448, new cost: 52934
+Movement in iteration: 450, new cost: 52894
+Movement in iteration: 460, new cost: 52862
+Movement in iteration: 492, new cost: 52854
+Movement in iteration: 532, new cost: 52822
+Movement in iteration: 552, new cost: 52806
+Movement in iteration: 589, new cost: 52694
+Movement in iteration: 592, new cost: 52634
+Movement in iteration: 594, new cost: 52610
+Movement in iteration: 642, new cost: 52570
+Movement in iteration: 644, new cost: 52562
+Movement in iteration: 652, new cost: 52526
+Movement in iteration: 660, new cost: 52518
+Movement in iteration: 717, new cost: 52492
+Movement in iteration: 718, new cost: 52488
+Movement in iteration: 759, new cost: 52464
+Movement in iteration: 771, new cost: 52450
+Movement in iteration: 800, new cost: 52434
+Movement in iteration: 851, new cost: 52420
+Movement in iteration: 860, new cost: 52378
+Movement in iteration: 861, new cost: 52318
+Movement in iteration: 900, new cost: 52298
+Movement in iteration: 940, new cost: 52282
+Movement in iteration: 959, new cost: 52262
+Movement in iteration: 968, new cost: 52246
+Movement in iteration: 1014, new cost: 52090
+Movement in iteration: 1020, new cost: 52014
+Movement in iteration: 1030, new cost: 51892
+Movement in iteration: 1052, new cost: 51840
+Movement in iteration: 1060, new cost: 51812
+Movement in iteration: 1072, new cost: 51776
+Movement in iteration: 1112, new cost: 51706
+Movement in iteration: 1141, new cost: 51688
+Movement in iteration: 1159, new cost: 51624
+Movement in iteration: 1161, new cost: 51564
+Movement in iteration: 1173, new cost: 51480
+Movement in iteration: 1180, new cost: 51472
+Movement in iteration: 1190, new cost: 51448
+Movement in iteration: 1208, new cost: 51390
+Movement in iteration: 1210, new cost: 51348
+Movement in iteration: 1211, new cost: 51288
+Movement in iteration: 1232, new cost: 51270
+Movement in iteration: 1240, new cost: 51206
+Movement in iteration: 1251, new cost: 51186
+Movement in iteration: 1281, new cost: 51158
+Movement in iteration: 1287, new cost: 51120
+Movement in iteration: 1292, new cost: 51072
+Movement in iteration: 1301, new cost: 51042
+Movement in iteration: 1330, new cost: 51004
+Movement in iteration: 1360, new cost: 50982
+Movement in iteration: 1361, new cost: 50958
+Movement in iteration: 1400, new cost: 50946
+Movement in iteration: 1408, new cost: 50918
+Movement in iteration: 1409, new cost: 50914
+Movement in iteration: 1410, new cost: 50892
+Movement in iteration: 1469, new cost: 50826
+Movement in iteration: 1491, new cost: 50790
+Movement in iteration: 1560, new cost: 50782
+Movement in iteration: 1561, new cost: 50766
+Movement in iteration: 1609, new cost: 50762
+Movement in iteration: 1610, new cost: 50746
+Movement in iteration: 1710, new cost: 50726
+Movement in iteration: 1714, new cost: 50514
+Movement in iteration: 1749, new cost: 50476
+Movement in iteration: 1759, new cost: 50452
+Movement in iteration: 1760, new cost: 50450
+Movement in iteration: 1790, new cost: 50442
+Movement in iteration: 1808, new cost: 50410
+Movement in iteration: 1886, new cost: 50386
+Movement in iteration: 1894, new cost: 50354
+Movement in iteration: 1983, new cost: 50350
+Movement in iteration: 2102, new cost: 50298
+Movement in iteration: 2113, new cost: 50286
+Movement in iteration: 2185, new cost: 50246
+Loop ended because of the temperature

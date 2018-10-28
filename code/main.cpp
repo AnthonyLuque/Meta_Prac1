@@ -37,30 +37,42 @@ int main(int argc,  char** argv) {
 			cout << "Seeds:" << seeds[i] << endl;
 			std::srand(atoi(seeds[i]));
 
+
 			// Greedy
 			const clock_t greedy_begin_time = clock();
 			instance->greedy(cost);
 			std::cout << "Greedy execution time: " << float(clock() - greedy_begin_time) / CLOCKS_PER_SEC << endl;
 
 			// Best First
+			ofstream outfile;
+			std::vector<string> v;
+			instance->split(argv[itFile],v,'/');
+			outfile.open("logs/BF" + v.at(1) + seeds[i] + ".txt");
 			const clock_t bestFirst_begin_time = clock();
-			instance->bestFirst(cost);
+			instance->bestFirst(cost, outfile);
 			std::cout << "Best First execution time: " << float(clock() - bestFirst_begin_time) / CLOCKS_PER_SEC << endl;
+			outfile.close();
 
 			// Simulated Annealing
+			instance->split(argv[itFile],v,'/');
+			outfile.open("logs/SAB" + v.at(1) + seeds[i] + ".txt");
 			const clock_t simulatedAnnealingBoltzmann_begin_time = clock();
-			instance->simAnnealingBoltzmann(cost);
+			instance->simAnnealingBoltzmann(cost, outfile);
 			std::cout << "Simulated Annealing Boltzmann execution time: " << float(clock() - simulatedAnnealingBoltzmann_begin_time) / CLOCKS_PER_SEC << endl;
+			outfile.close();
 
+			instance->split(argv[itFile],v,'/');
+			outfile.open("logs/SAG" + v.at(1) + seeds[i] + ".txt");
 			const clock_t simulatedAnnealingGeometric_begin_time = clock();
-			instance->simAnnealingGeometric(cost);
+			instance->simAnnealingGeometric(cost, outfile);
 			std::cout << "Simulated Annealing Geometric execution time: " << float(clock() - simulatedAnnealingGeometric_begin_time) / CLOCKS_PER_SEC << endl;
+			outfile.close();
 
 			cout << endl;
 		}
 	
 	}
 
-	system("pause");
+	//system("pause");
 	return 0;
 }
