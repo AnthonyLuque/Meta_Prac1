@@ -127,7 +127,7 @@ int* Instance::greedy(int * cost){
 	int* distanceSums = new int[matrixSize];
 	bool* flowMask = new bool[matrixSize];
 	bool* distanceMask = new bool[matrixSize];
-
+    *cost= 0;
 	int* unitAndLocationAssociation = new int[matrixSize];
 	// Initialization
 	for (int i = 0; i < matrixSize; i++) {
