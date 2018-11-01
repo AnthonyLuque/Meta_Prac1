@@ -359,8 +359,13 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 							outfile << "Movement in iteration: " << it << ", new cost: " << *cost << endl;
 						}else{
 							/*Simulated annealing*/
+							double r = (double)rand() / (RAND_MAX);
+							cout << "r " << r << endl;
 							double pAcceptance = exp(((double)costDiff)/T);
-							if(T>pAcceptance){
+							cout << "costDiff " << costDiff << endl;
+							cout << "T " << T << endl;
+							cout << "p " << pAcceptance << endl;
+							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
 								unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
@@ -452,8 +457,13 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 
 						}else{
 							/*Simulated annealing*/
+							double r = (double)rand() / (RAND_MAX);
+							cout << "r " << r << endl;
 							double pAcceptance = exp(((double)costDiff)/T);
-							if(T>pAcceptance){
+							cout << "costDiff " << costDiff << endl;
+							cout << "T " << T << endl;
+							cout << "p " << pAcceptance << endl;
+							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
 								unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
@@ -467,7 +477,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 						}
 
 					}
-					T= ALPHA * T ;
+					T = ALPHA * T ;
 				}
 				if (!improve_flag)
 					DLB[i]=1;
