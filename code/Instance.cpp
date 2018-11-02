@@ -360,11 +360,7 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 						}else{
 							/*Simulated annealing*/
 							double r = (double)rand() / (RAND_MAX);
-							cout << "r " << r << endl;
 							double pAcceptance = exp(((double)costDiff)/T);
-							cout << "costDiff " << costDiff << endl;
-							cout << "T " << T << endl;
-							cout << "p " << pAcceptance << endl;
 							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
@@ -376,9 +372,9 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
 							}
 						}
-
+						T = T / (1 + log(it));
 					}
-					T= T / (1+log(it));
+					
 				}
 				if (!improve_flag)
 					DLB[i]=1;
@@ -430,6 +426,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 	}
 	double initialT= (double)*cost * 1.5;
 	double T = initialT;
+
 	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
 	int it = 0;
@@ -458,11 +455,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 						}else{
 							/*Simulated annealing*/
 							double r = (double)rand() / (RAND_MAX);
-							cout << "r " << r << endl;
 							double pAcceptance = exp(((double)costDiff)/T);
-							cout << "costDiff " << costDiff << endl;
-							cout << "T " << T << endl;
-							cout << "p " << pAcceptance << endl;
 							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
@@ -475,9 +468,9 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 
 							}
 						}
-
+						T = ALPHA * T;
 					}
-					T = ALPHA * T ;
+					
 				}
 				if (!improve_flag)
 					DLB[i]=1;
