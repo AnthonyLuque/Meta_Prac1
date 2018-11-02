@@ -210,7 +210,7 @@ int* Instance::greedy(int * cost){
 			for (int i = 0; i < matrixSize; i++) {
 				cout << unitAndLocationAssociation[i] << " ";
 			}
-			cout << "coste: " << *cost << endl;
+			cout << endl << "Greedy cost: " << *cost << endl;
 			return unitAndLocationAssociation;
 }
 int * Instance::bestFirst(int * cost , ofstream &outfile){
@@ -274,10 +274,12 @@ int * Instance::bestFirst(int * cost , ofstream &outfile){
 		outfile << "Loop ended because of DLB"<< endl;
 
 	//Display solution and cost
-	for(int i=0; i< matrixSize; i++){
-		cout << unitAndLocationAssociation[i] << " ";
-	}
-	cout << "coste: "<< *cost << endl;
+		outfile << "Solution: ";
+		for(int i=0; i< matrixSize; i++){
+			outfile << unitAndLocationAssociation[i] << " ";
+		}
+		outfile << "cost: "<< *cost << endl;
+		cout << "Best First cost: "<< *cost << endl;
 
 	return unitAndLocationAssociation;
 }
@@ -308,7 +310,7 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 	*cost=0;
 	int * DLB= new int[matrixSize];
 	int * bestSolution= new int[matrixSize];
-	int bestCost = 0;
+
 	bool improve_flag;
 	for(int i=0;i<matrixSize;i++){
 		DLB[i]=0;
@@ -331,7 +333,8 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 	}
 	double initialT= (double)*cost * 1.5;
 	double T=initialT;
-
+	int bestCost = *cost;
+	bestSolution = unitAndLocationAssociation;
 	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
 	int it = 1;
@@ -350,9 +353,10 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 							unitAndLocationAssociation[i] = unitAndLocationAssociation[j];
 							unitAndLocationAssociation[j] = swap;
 							*cost+=costDiff;
-
-							bestSolution = unitAndLocationAssociation;
-							bestCost=*cost;
+							if(*cost < bestCost){
+								bestCost=*cost;
+								bestSolution = unitAndLocationAssociation;
+							}
 							DLB[i]=0;
 							DLB[j]=0;
 							improve_flag=true;
@@ -360,7 +364,7 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 						}else{
 							/*Simulated annealing*/
 							double r = (double)rand() / (RAND_MAX);
-							double pAcceptance = exp(((double)costDiff)/T);
+							double pAcceptance = 1/(exp(((double)costDiff)/T));
 							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
@@ -370,6 +374,8 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 								DLB[i]=0;
 								DLB[j]=0;
 								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
+								outfile << "Temperature: " << T << " p " << pAcceptance << " r " << r << endl;
+
 							}
 						}
 					}
@@ -387,10 +393,13 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 	else
 		outfile << "Loop ended because of the temperature"<< endl;
 	//Display solution and cost
+	outfile << "Solution: ";
 	for(int i=0; i< matrixSize; i++){
-		cout << bestSolution[i] << " ";
+		outfile << bestSolution[i] << " ";
 	}
-	cout << "coste: "<< bestCost << endl;
+	outfile << "cost: "<< bestCost << endl;
+	cout << "Simulated Annealing Boltzmann cost: "<< bestCost << endl;
+
 
 	return bestSolution;
 }
@@ -400,7 +409,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 	*cost=0;
 	int * DLB= new int[matrixSize];
 	int * bestSolution= new int[matrixSize];
-	int bestCost = 0;
+
 	bool improve_flag;
 	for(int i=0;i<matrixSize;i++){
 		DLB[i]=0;
@@ -423,7 +432,8 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 	}
 	double initialT= (double)*cost * 1.5;
 	double T = initialT;
-
+	int bestCost = *cost;
+	bestSolution = unitAndLocationAssociation;
 	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
 	int it = 1;
@@ -442,8 +452,10 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 							unitAndLocationAssociation[j] = swap;
 							*cost+=costDiff;
 
-							bestSolution = unitAndLocationAssociation;
-							bestCost=*cost;
+							if(*cost < bestCost){
+								bestCost=*cost;
+								bestSolution = unitAndLocationAssociation;
+							}
 							DLB[i]=0;
 							DLB[j]=0;
 							improve_flag=true;
@@ -452,7 +464,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 						}else{
 							/*Simulated annealing*/
 							double r = (double)rand() / (RAND_MAX);
-							double pAcceptance = exp(((double)costDiff)/T);
+							double pAcceptance = 1/(exp(((double)costDiff)/T));
 							if(r <= pAcceptance){
 								//Making the change effective
 								swap = unitAndLocationAssociation[i];
@@ -462,6 +474,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 								DLB[i]=0;
 								DLB[j]=0;
 								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
+								outfile << "Temperature: " << T << " p " << pAcceptance << " r " << r << endl;
 							}
 						}
 					}
@@ -480,10 +493,12 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 		outfile << "Loop ended because of the temperature"<< endl;
 
 	//Display solution and cost
-	for(int i=0; i< matrixSize; i++){
-		cout << bestSolution[i] << " ";
-	}
-	cout << "coste: "<< bestCost << endl;
+		outfile << "Solution: ";
+		for(int i=0; i< matrixSize; i++){
+			outfile << bestSolution[i] << " ";
+		}
+		outfile << "cost: "<< bestCost << endl;
+		cout << "Simulated Annealing Geometric cost: "<< bestCost << endl;
 
 	return bestSolution;
 }

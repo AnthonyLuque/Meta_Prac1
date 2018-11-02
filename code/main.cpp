@@ -3,8 +3,8 @@
 
 int main(int argc,  char** argv) {
 	argc = 11;
-	argv[1] = (char*)"datos/cnf02.dat";
-	argv[2] = (char*)"datos/cnf01.dat";
+	argv[1] = (char*)"datos/cnf01.dat";
+	argv[2] = (char*)"datos/cnf02.dat";
 	argv[3] = (char*)"datos/cnf03.dat";
 	argv[4] = (char*)"datos/cnf04dat.sec";
 	argv[5] = (char*)"datos/cnf05dat.sec";
@@ -20,7 +20,7 @@ int main(int argc,  char** argv) {
 	}
 
 	int * cost = new int[1];
-	long greedyAlgorithmValues[5];
+	//long greedyAlgorithmValues;
 	long bestFirstAlgorithmValues[5];
 	long saBoltzmannAlgorithmValues[5];
 	long saGeometricAlgorithmValues[5];
@@ -37,27 +37,26 @@ int main(int argc,  char** argv) {
 		bestValues.push_back(8133398);
 
 	std::vector<const char*> seeds;
-	seeds.push_back("12345678");
-	seeds.push_back("23456781");
-	seeds.push_back("34567812");
-	seeds.push_back("45678123");
-	seeds.push_back("56781234");
+	seeds.push_back("77374129");
+	seeds.push_back("73741297");
+	seeds.push_back("37412977");
+	seeds.push_back("74129773");
+	seeds.push_back("41297737");
 
 
 	for (int itFile = 1; itFile <= argc - 1; itFile++) {
 		cout << "File:" << argv[itFile] << endl;
 		Instance* instance = new Instance(argv[itFile]);
 
+		// Greedy
+		const clock_t greedy_begin_time = clock();
+		instance->greedy(cost);
+		std::cout << "Greedy execution time: " << float(clock() - greedy_begin_time) / CLOCKS_PER_SEC << endl;
+		//greedyAlgorithmValues = *cost;
+
 		for (int i = 0; i < seeds.size(); i++) {
 			cout << "Seeds:" << seeds[i] << endl;
 			std::srand(atoi(seeds[i]));
-
-
-			// Greedy
-			const clock_t greedy_begin_time = clock();
-			instance->greedy(cost);
-			std::cout << "Greedy execution time: " << float(clock() - greedy_begin_time) / CLOCKS_PER_SEC << endl;
-			greedyAlgorithmValues[i] = *cost;
 
 			// Best First
 			ofstream outfile;
@@ -92,12 +91,12 @@ int main(int argc,  char** argv) {
 		}
 		// Deviations calcul
 
-				long desvGreedy = 0;
+				/*long desvGreedy = 0;
 				for (long value : greedyAlgorithmValues) {
 					desvGreedy += 100 * (value - bestValues[itFile - 1]) / bestValues[itFile - 1];
 				}
 				desvGreedy /= 5;
-				cout << "Greedy Deviation: " << desvGreedy << endl;
+				cout << "Greedy Deviation: " << desvGreedy << endl;*/
 
 				long desvBestFirst = 0;
 				for (long value : bestFirstAlgorithmValues) {
