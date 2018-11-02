@@ -334,7 +334,7 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 
 	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
-	int it = 0;
+	int it = 1;
 	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
 		for(int i=0; i<matrixSize;i++){
 			if(DLB[i]==0){
@@ -372,16 +372,13 @@ int * Instance::simAnnealingBoltzmann(int * cost , ofstream &outfile){
 								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
 							}
 						}
-						T = T / (1 + log(it));
 					}
-					
 				}
 				if (!improve_flag)
 					DLB[i]=1;
 			}
-
 		}
-
+		T = T / (1 + log(it));
 	}
 	if(it>50000)
 		outfile << "Loop ended because of iteration number" <<endl;
@@ -429,7 +426,7 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 
 	outfile << "Initial solution cost: " << *cost << ", Initial temperature: "<<initialT << endl;
 	//Main loop
-	int it = 0;
+	int it = 1;
 	while(it<50000 && checkDLB(DLB) && T>(5.0*initialT)/100.0){
 		for(int i=0; i<matrixSize;i++){
 			if(DLB[i]==0){
@@ -465,19 +462,15 @@ int * Instance::simAnnealingGeometric(int * cost, ofstream &outfile){
 								DLB[i]=0;
 								DLB[j]=0;
 								outfile << "Worse movement in iteration: " << it << ", new cost: " << *cost << endl;
-
 							}
 						}
-						T = ALPHA * T;
 					}
-					
 				}
 				if (!improve_flag)
 					DLB[i]=1;
 			}
-
 		}
-
+		T = ALPHA * T;
 	}
 	if(it>50000)
 		outfile << "Loop ended because of iteration number" <<endl;
